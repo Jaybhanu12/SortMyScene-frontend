@@ -1,0 +1,79 @@
+.reservation-timer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: var(--radius-md);
+  border: 1px solid;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.reservation-timer--normal {
+  background: rgba(108, 71, 255, 0.08);
+  border-color: rgba(108, 71, 255, 0.25);
+}
+
+.reservation-timer--warning {
+  background: var(--warning-light);
+  border-color: rgba(245, 158, 11, 0.35);
+  animation: timerPulse 2s ease-in-out infinite;
+}
+
+.reservation-timer--critical {
+  background: var(--danger-light);
+  border-color: rgba(239, 68, 68, 0.4);
+  animation: timerPulse 0.8s ease-in-out infinite;
+}
+
+@keyframes timerPulse {
+  0%, 100% { box-shadow: none; }
+  50% { box-shadow: 0 0 16px var(--danger-light); }
+}
+
+.reservation-timer__icon { font-size: 20px; flex-shrink: 0; }
+
+.reservation-timer__content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.reservation-timer__label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.reservation-timer__time {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.reservation-timer--normal .reservation-timer__time { color: var(--accent); }
+.reservation-timer--warning .reservation-timer__time { color: var(--warning); }
+.reservation-timer--critical .reservation-timer__time { color: var(--danger); }
+
+.reservation-timer__bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--border);
+}
+
+.reservation-timer__bar-fill {
+  height: 100%;
+  border-radius: 0 2px 2px 0;
+  transition: width 1s linear, background 0.3s ease;
+}
+
+.reservation-timer--normal .reservation-timer__bar-fill { background: var(--accent); }
+.reservation-timer--warning .reservation-timer__bar-fill { background: var(--warning); }
+.reservation-timer--critical .reservation-timer__bar-fill { background: var(--danger); }

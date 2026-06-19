@@ -1,0 +1,284 @@
+.event-detail-page { padding: 24px 0 60px; }
+
+.event-detail-page__loading,
+.event-detail-page__error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  min-height: 60vh;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.event-detail-page__error span { font-size: 40px; }
+
+.event-detail-page__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+  transition: color var(--transition);
+  font-weight: 500;
+}
+.event-detail-page__back:hover { color: var(--text-primary); }
+
+/* Two-column layout */
+.event-detail-page__layout {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 24px;
+  align-items: start;
+}
+
+/* Seat grid panel */
+.event-detail-page__grid-section {
+  padding: 24px;
+}
+
+.event-detail-page__grid-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.event-detail-page__grid-header h2 {
+  font-size: 18px;
+}
+
+/* Sidebar */
+.event-detail-page__sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: sticky;
+  top: 84px;
+}
+
+/* Event info card */
+.event-detail-page__info-card { padding: 20px; }
+
+.event-detail-page__category-chip {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+
+.event-detail-page__event-name {
+  font-size: 20px;
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+
+.event-detail-page__description {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.event-detail-page__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.event-detail-page__meta-item {
+  display: flex;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+.event-detail-page__meta-item span {
+  font-size: 16px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* Summary card */
+.event-detail-page__summary { padding: 20px; }
+
+.event-detail-page__summary-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.event-detail-page__summary-empty {
+  font-size: 13px;
+  color: var(--text-muted);
+  text-align: center;
+  padding: 16px 0;
+}
+
+.event-detail-page__summary-seats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.seat-chip {
+  padding: 4px 10px;
+  background: var(--accent-light);
+  color: var(--accent);
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'Courier New', monospace;
+}
+
+.event-detail-page__summary-line {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: var(--text-secondary);
+  padding: 10px 0;
+  border-top: 1px solid var(--border);
+}
+
+.event-detail-page__summary-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0 16px;
+  border-top: 1px solid var(--border);
+}
+
+.event-detail-page__summary-total span {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.event-detail-page__summary-total strong {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.event-detail-page__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.event-detail-page__auth-note {
+  font-size: 13px;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 8px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .event-detail-page__layout {
+    grid-template-columns: 1fr;
+  }
+  .event-detail-page__sidebar {
+    position: static;
+  }
+}
+
+
+
+
+/* Container that allows horizontal scrolling if there are too many seats */
+.seat-grid-scroll-container {
+  width: 100%;
+  overflow-x: auto; /* Allows scrolling horizontally */
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers the grid if it's smaller than the container */
+}
+
+/* Individual Row */
+.seat-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  gap: 15px;
+}
+
+.seat-row__label {
+  font-weight: bold;
+  color: #888;
+  width: 20px; /* Fixed width so all rows align perfectly */
+  text-align: right;
+}
+
+/* The actual row of seats */
+.seat-row__seats {
+  display: flex;
+  gap: 8px; /* Space between seats */
+  flex-wrap: nowrap; /* CRITICAL: Prevents seats from wrapping to the next line */
+}
+
+/* Base Seat Style */
+.seat {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  background-color: #2ecc71; /* Green for Available */
+  transition: transform 0.1s ease, background-color 0.2s;
+  flex-shrink: 0; /* CRITICAL: Prevents seats from shrinking when the row is long */
+}
+
+.seat:hover:not(:disabled) {
+  transform: scale(1.1);
+}
+
+.seat:disabled {
+  cursor: not-allowed;
+}
+
+/* Seat States */
+.seat--selected {
+  background-color: #6c5ce7; /* Purple */
+}
+
+.seat--reserved {
+  background-color: #e67e22; /* Orange */
+}
+
+.seat--booked {
+  background-color: #34495e; /* Grey */
+  opacity: 0.5;
+}
+
+/* Legend Styles */
+.seat-legend {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: #aaa;
+}
+
+/* Fallback for Missing Layout */
+.event-detail-page__no-layout {
+  padding: 40px;
+  text-align: center;
+  color: #888;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  margin-top: 20px;
+}
